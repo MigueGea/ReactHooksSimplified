@@ -1,17 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-import { MinusButton } from "./components/MinusButton";
-import { PlusButton } from "./components/PlusButton";
 
 function App() {
-  const [count, setCount] = useState<number>(0);
+  const [text, setText] = useState<string>("");
+
+  useEffect(() => {
+    console.log("text changed");
+  }, [text]);
 
   return (
     <>
       <div>
-        <MinusButton count={count} setCount={setCount}></MinusButton>
-        <p>{count}</p>
-        <PlusButton count={count} setCount={setCount}></PlusButton>
+        <p>Select your name</p>
+        <button onClick={() => setText("Migue")}>Migue</button>
+        <button onClick={() => setText("Alberto")}>Alberto</button>
+        <button onClick={() => setText("Claudia")}>Claudia</button>
+        {text && <p>Your name is {text}</p>}
       </div>
     </>
   );
